@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "ee58ad2d-2a0f-4bb8-a826-751ecac6293d",
+		"name": "Pet Appointment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pets",
+			"item": [
+				{
+					"name": "ListAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/pet?nome=Coragem",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"pet"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "Coragem"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/pet/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"pet",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/pet?nome=Manda Chuva&especie=G",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"pet"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "Manda Chuva"
+								},
+								{
+									"key": "especie",
+									"value": "G"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/pet/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"pet",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Atendimento",
+			"item": [
+				{
+					"name": "ListAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/atendimento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"atendimento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/atendimento?pet_id=1&data_atendimento=2020-10-05&descricao=recebeu vacina da raiva",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"atendimento"
+							],
+							"query": [
+								{
+									"key": "pet_id",
+									"value": "1"
+								},
+								{
+									"key": "data_atendimento",
+									"value": "2020-10-05"
+								},
+								{
+									"key": "descricao",
+									"value": "recebeu vacina da raiva"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/atendimento/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"atendimento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

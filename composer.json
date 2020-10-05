@@ -58,15 +58,6 @@
             "@,php artisan key:generate --ansi"
         ],
         "generate-swagger": "./vendor/bin/openapi config/ -o ./public/swagger/swagger.json",
-        "check" : [
-            "@cs-check",
-            "@test"
-        ],
-        "cs-check" : "phpcs --ignore=*/test/*,*/data/*",
-        "test" : [
-            "Composer\\Config::disableProcessTimeout",
-            "phpunit --colors=always"
-        ],
         "test-coverage" : [
             "Composer\\Config::disableProcessTimeout",
             "phpunit --colors=always --coverage-html '/var/www/html/public/build/reports/coverage'"
