@@ -1,10 +1,9 @@
 {
-    "name": "laravel/laravel",
+    "name": "henriquepappis/pet-appointment",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Rest API from Pet Appointment application",
     "keywords": [
-        "framework",
-        "laravel"
+        "pet-appointment"
     ],
     "license": "MIT",
     "require": {
@@ -13,7 +12,8 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "zircote/swagger-php" : "^3.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
@@ -55,7 +55,21 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
+            "@,php artisan key:generate --ansi"
+        ],
+        "generate-swagger": "./vendor/bin/openapi config/ -o ./public/swagger/swagger.json",
+        "check" : [
+            "@cs-check",
+            "@test"
+        ],
+        "cs-check" : "phpcs --ignore=*/test/*,*/data/*",
+        "test" : [
+            "Composer\\Config::disableProcessTimeout",
+            "phpunit --colors=always"
+        ],
+        "test-coverage" : [
+            "Composer\\Config::disableProcessTimeout",
+            "phpunit --colors=always --coverage-html '/var/www/html/public/build/reports/coverage'"
         ]
     }
 }

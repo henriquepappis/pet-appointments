@@ -1,19 +1,17 @@
 <?php
 
+use App\Http\Controllers\api\AtendimentoController;
+use App\Http\Controllers\api\PetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+Route::get('/pet',[PetController::class, 'listAll']);
+Route::get('/pet/{id}',[PetController::class, 'findById']);
+Route::post('/pet',[PetController::class, 'create']);
+Route::delete('/pet/{id}',[PetController::class, 'remove']);
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+# Atendimentos routes
+Route::get('/atendimento',[AtendimentoController::class, 'listAll']);
+Route::get('/atendimento/{id}',[AtendimentoController::class, 'findById']);
+Route::post('/atendimento',[AtendimentoController::class, 'create']);
+Route::delete('/atendimento/{id}',[AtendimentoController::class, 'remove']);

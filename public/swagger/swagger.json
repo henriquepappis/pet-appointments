@@ -1,0 +1,571 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Pet Appointment API",
+        "description": "Aplicação para inclusão, listagem e remoção de pets e atendimentos realizados.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/atendimento": {
+            "get": {
+                "tags": [
+                    "Atendimentos"
+                ],
+                "summary": "Listagem dos Atendimentos cadastrados",
+                "description": "Listagem dos Atendimentos cadastrados",
+                "responses": {
+                    "200": {
+                        "description": "Listagem dos atendimentos e seus atributos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "pet_id": {
+                                            "description": "Identificação do Pet",
+                                            "type": "integer"
+                                        },
+                                        "data_atendimento": {
+                                            "description": "Data do Atendimento",
+                                            "type": "date"
+                                        },
+                                        "descricao": {
+                                            "description": "Descrição do Atendimento",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": [
+                                        {
+                                            "current_page": 1,
+                                            "data": [
+                                                {
+                                                    "id": 1,
+                                                    "pet_id": 1,
+                                                    "data_atendimento": "2020-10-01",
+                                                    "descricao": "recebeu dose de 100mg de coragem",
+                                                    "created_at": "2020-10-04T22:24:07.000000Z",
+                                                    "updated_at": "2020-10-04T22:24:07.000000Z"
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "pet_id": 2,
+                                                    "data_atendimento": "2020-10-02",
+                                                    "descricao": "recebeu dose de 10mg coragem",
+                                                    "created_at": "2020-10-04T22:24:07.000000Z",
+                                                    "updated_at": "2020-10-04T22:24:07.000000Z"
+                                                },
+                                                {
+                                                    "id": 3,
+                                                    "pet_id": 3,
+                                                    "data_atendimento": "2020-10-03",
+                                                    "descricao": "recebeu dose de 10mg de força",
+                                                    "created_at": "2020-10-04T22:24:07.000000Z",
+                                                    "updated_at": "2020-10-04T22:24:07.000000Z"
+                                                },
+                                                {
+                                                    "id": 4,
+                                                    "pet_id": 4,
+                                                    "data_atendimento": "2020-10-04",
+                                                    "descricao": null,
+                                                    "created_at": "2020-10-04T22:24:07.000000Z",
+                                                    "updated_at": "2020-10-04T22:24:07.000000Z"
+                                                }
+                                            ],
+                                            "first_page_url": "http://localhost/api/atendimento?page=1",
+                                            "from": 1,
+                                            "last_page": 1,
+                                            "last_page_url": "http://localhost/api/atendimento?page=1",
+                                            "links": [
+                                                {
+                                                    "url": null,
+                                                    "label": "Previous",
+                                                    "active": false
+                                                },
+                                                {
+                                                    "url": "http://localhost/api/atendimento?page=1",
+                                                    "label": 1,
+                                                    "active": true
+                                                },
+                                                {
+                                                    "url": null,
+                                                    "label": "Next",
+                                                    "active": false
+                                                }
+                                            ],
+                                            "next_page_url": null,
+                                            "path": "http://localhost/api/atendimento",
+                                            "per_page": 15,
+                                            "prev_page_url": null,
+                                            "to": 4,
+                                            "total": 4
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Atendimentos"
+                ],
+                "summary": "Adiciona um Atendimento",
+                "description": "Adiciona um Atendimento",
+                "parameters": [
+                    {
+                        "name": "pet_id",
+                        "in": "query",
+                        "description": "Identificador do Pet",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "data_atendimento",
+                        "in": "query",
+                        "description": "Data do Atendimento",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "descricao",
+                        "in": "query",
+                        "description": "Descrição do Atendimento",
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorno mensagem de sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "Identificação do Atendimento",
+                                            "type": "integer"
+                                        },
+                                        "pet_id": {
+                                            "description": "Identificação do Pet",
+                                            "type": "integer"
+                                        },
+                                        "data_atendimento": {
+                                            "description": "Data do Atendimento",
+                                            "type": "string"
+                                        },
+                                        "descricao": {
+                                            "description": "Descrição do Atendimento",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": [
+                                        {
+                                            "id": 1,
+                                            "pet_id": 1,
+                                            "data_atendimento": "2020-10-04",
+                                            "descricao": "recebeu a primeira dose da vacina da gripe",
+                                            "updated_at": "2020-10-04T23:20:16.000000Z",
+                                            "created_at": "2020-10-04T23:20:16.000000Z"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/atendimento/{id}": {
+            "get": {
+                "tags": [
+                    "Atendimentos"
+                ],
+                "summary": "Lista um Atendimento identificado pelo id",
+                "description": "Lista um Atendimento identificado pelo id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Atendimento id",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista um atendimento com seus atributos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "pet_id": {
+                                            "description": "Identificação do Pet",
+                                            "type": "integer"
+                                        },
+                                        "data_atendimento": {
+                                            "description": "Data do Atendimento",
+                                            "type": "date"
+                                        },
+                                        "descricao": {
+                                            "description": "Descrição do Atendimento",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": [
+                                        {
+                                            "id": 1,
+                                            "pet_id": 1,
+                                            "data_atendimento": "2020-10-01",
+                                            "descricao": "recebeu dose de 100mg de coragem",
+                                            "created_at": "2020-10-04T22:24:07.000000Z",
+                                            "updated_at": "2020-10-04T22:24:07.000000Z"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Atendimentos"
+                ],
+                "summary": "Remove um Atendimento identificado pelo id",
+                "description": "Remove um Atendimento identificado pelo id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Atendimento id",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Remove um pet",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "pet_id": {
+                                            "description": "Identificação do Pet",
+                                            "type": "integer"
+                                        },
+                                        "data_atendimento": {
+                                            "description": "Data do Atendimento",
+                                            "type": "date"
+                                        },
+                                        "descricao": {
+                                            "description": "Descrição do Atendimento",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": [
+                                        "Atendimento removido com sucesso"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pet": {
+            "get": {
+                "tags": [
+                    "Pets"
+                ],
+                "summary": "Listagem dos Pets cadastrados",
+                "description": "Listagem dos Pets cadastrados",
+                "responses": {
+                    "200": {
+                        "description": "Listagem dos pets e seus atributos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "Identificação do Pet",
+                                            "type": "integer"
+                                        },
+                                        "nome": {
+                                            "description": "Nome do Pet",
+                                            "type": "string"
+                                        },
+                                        "especie": {
+                                            "description": "Espécie do Pet (C ou G)",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": [
+                                        {
+                                            "current_page": 1,
+                                            "data": [
+                                                {
+                                                    "id": 1,
+                                                    "nome": "Coragem",
+                                                    "especie": "C",
+                                                    "created_at": "2020-10-04T22:19:26.000000Z",
+                                                    "updated_at": "2020-10-04T22:19:26.000000Z"
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "nome": "Scooby Doo",
+                                                    "especie": "C",
+                                                    "created_at": "2020-10-04T22:19:26.000000Z",
+                                                    "updated_at": "2020-10-04T22:19:26.000000Z"
+                                                },
+                                                {
+                                                    "id": 3,
+                                                    "nome": "Mew",
+                                                    "especie": "G",
+                                                    "created_at": "2020-10-04T22:19:26.000000Z",
+                                                    "updated_at": "2020-10-04T22:19:26.000000Z"
+                                                },
+                                                {
+                                                    "id": 4,
+                                                    "nome": "Mewtwo",
+                                                    "especie": "G",
+                                                    "created_at": "2020-10-04T22:19:26.000000Z",
+                                                    "updated_at": "2020-10-04T22:19:26.000000Z"
+                                                }
+                                            ],
+                                            "first_page_url": "http://localhost/api/pet?page=1",
+                                            "from": 1,
+                                            "last_page": 1,
+                                            "last_page_url": "http://localhost/api/pet?page=1",
+                                            "links": [
+                                                {
+                                                    "url": null,
+                                                    "label": "Previous",
+                                                    "active": false
+                                                },
+                                                {
+                                                    "url": "http://localhost/api/pet?page=1",
+                                                    "label": 1,
+                                                    "active": true
+                                                },
+                                                {
+                                                    "url": null,
+                                                    "label": "Next",
+                                                    "active": false
+                                                }
+                                            ],
+                                            "next_page_url": null,
+                                            "path": "http://localhost/api/pet",
+                                            "per_page": 15,
+                                            "prev_page_url": null,
+                                            "to": 4,
+                                            "total": 4
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Pets"
+                ],
+                "summary": "Adiciona um Pet",
+                "description": "Adiciona um Pet",
+                "parameters": [
+                    {
+                        "name": "nome",
+                        "in": "query",
+                        "description": "Nome do Pet",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "especie",
+                        "in": "query",
+                        "description": "Espécie do Pet (C ou G)",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorno mensagem de sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "Identificação do Pet",
+                                            "type": "integer"
+                                        },
+                                        "nome": {
+                                            "description": "Nome do Pet",
+                                            "type": "string"
+                                        },
+                                        "especie": {
+                                            "description": "Espécie do Pet (C ou G)",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": [
+                                        {
+                                            "nome": "Manda Chuva",
+                                            "especie": "G",
+                                            "updated_at": "2020-10-04T23:20:16.000000Z",
+                                            "created_at": "2020-10-04T23:20:16.000000Z",
+                                            "id": 24
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pet/{id}": {
+            "get": {
+                "tags": [
+                    "Pets"
+                ],
+                "summary": "Lista um Pet identificado pelo id",
+                "description": "Lista um Pet identificado pelo id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Pet id",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista um pet com seus atributos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "Identificação do Pet",
+                                            "type": "integer"
+                                        },
+                                        "nome": {
+                                            "description": "Nome do Pet",
+                                            "type": "string"
+                                        },
+                                        "especie": {
+                                            "description": "Espécie do Pet (C ou G)",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": [
+                                        [
+                                            {
+                                                "nome": "Coragem",
+                                                "especie": "C",
+                                                "data_atendimento": "2020-10-01",
+                                                "descricao": "recebeu dose de 100mg de coragem",
+                                                "descritivo": "Em 01/10/2020 o Pet Coragem (Cão) 'recebeu dose de 100mg de coragem'"
+                                            }
+                                        ]
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Pets"
+                ],
+                "summary": "Remove um Pet identificado pelo id",
+                "description": "Remove um Pet identificado pelo id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Pet id",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Remove um pet",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "Identificação do Pet",
+                                            "type": "integer"
+                                        },
+                                        "nome": {
+                                            "description": "Nome do Pet",
+                                            "type": "string"
+                                        },
+                                        "especie": {
+                                            "description": "Espécie do Pet (C ou G)",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": [
+                                        "Pet removido com sucesso"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Pets",
+            "description": "Operações relacionadas aos Pets"
+        },
+        {
+            "name": "Atendimentos",
+            "description": "Operações relacionadas aos Atendimentos"
+        }
+    ]
+}
